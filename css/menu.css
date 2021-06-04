@@ -1,0 +1,236 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  transition: background-color 450ms ease-in-out;
+}
+.brand-title {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin: 0.4rem 1rem;
+}
+
+h1 {
+  margin: 0 1rem;
+}
+
+.navbar-links ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar-links ul li a {
+  text-decoration: none;
+  margin: 10px;
+  padding: 0.5rem;
+  color: white;
+  display: block;
+  position: relative;
+}
+
+.navbar-links ul li a::after {
+  content: "";
+  height: 2px;
+  width: 100%;
+  background-color: white;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scale(0, 1);
+  transition: transform ease-in-out 250ms;
+}
+
+.navbar-links ul li a:hover::after {
+  transform: scale(1, 1);
+}
+.menu-wrap {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.toggler {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+  width: 50px;
+  height: 50px;
+}
+
+.hamburguer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburguer-scrolled {
+  background-color: var(--background-color);
+  transition: background-color 450ms ease-in-out;
+}
+
+.hamburguer > div {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Top and bottom lines */
+.hamburguer > div:before,
+.hamburguer > div:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  width: 100%;
+  height: 2px;
+  background: inherit;
+}
+
+/* Moves line down */
+.hamburguer > div:after {
+  top: 10px;
+}
+
+/* Toggler animation */
+.toggler:checked + .hamburguer > div {
+  transform: rotate(135deg);
+}
+
+/* Turn lines into X */
+.toggler:checked + .hamburguer > div:before,
+.toggler:checked + .hamburguer > div:after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+/* Rotate on hover when checked */
+.toggler:checked:hover + .hamburguer > div {
+  transform: rotate(225deg);
+}
+
+/* Show Menu */
+.toggler:checked ~ .menu {
+  visibility: visible;
+}
+
+.toggler:checked ~ .menu > div {
+  transform: scale(1);
+  transition-duration: var(--menu-speed);
+}
+
+.toggler:checked ~ .menu > div > div {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.menu > div {
+  background: var(--overlay-color);
+  border-radius: 50%;
+  width: 200vw;
+  height: 200vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  transform: scale(0);
+  transition: all 0.4s ease;
+}
+
+.menu > div > div {
+  text-align: center;
+  max-width: 90vw;
+  max-height: 100vh;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.menu > div > div > ul > li {
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.menu > div > div > ul > li > a {
+  color: white;
+  text-decoration: none;
+}
+
+img.slide-in {
+  width: 320px;
+}
+
+@media (max-width: 450px) {
+  .menu-wrap {
+    display: inline-block;
+  }
+  .navbar-links {
+    display: none;
+  }
+  .more-stuff-grid {
+    flex-direction: column;
+  }
+  .more-stuff-grid:nth-child(even) > p {
+    order: 2;
+  }
+  .more-stuff-grid:nth-child(even) > img {
+    order: 1;
+  }
+  .more-stuff-grid > p {
+    margin-top: 15px;
+  }
+}
